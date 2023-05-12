@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.84
     agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
+    agentSlope: 7.9
+    agentClimb: 0.19
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.28
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -149,7 +149,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 0.018687248, g: 0, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -302,6 +302,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 153206, guid: ccf62cf2152f44840bc4038e037a7075, type: 3}
+      propertyPath: m_Name
+      value: Tile15
+      objectReference: {fileID: 0}
     - target: {fileID: 404654, guid: ccf62cf2152f44840bc4038e037a7075, type: 3}
       propertyPath: m_LocalPosition.x
       value: 150
@@ -333,6 +337,18 @@ PrefabInstance:
     - target: {fileID: 404654, guid: ccf62cf2152f44840bc4038e037a7075, type: 3}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 404654, guid: ccf62cf2152f44840bc4038e037a7075, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 404654, guid: ccf62cf2152f44840bc4038e037a7075, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 404654, guid: ccf62cf2152f44840bc4038e037a7075, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccf62cf2152f44840bc4038e037a7075, type: 3}
@@ -425,6 +441,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 162052, guid: 9a4dcf0d36e2c40188dbb2e26e6bebb4, type: 3}
+      propertyPath: m_Name
+      value: Tile14
+      objectReference: {fileID: 0}
     - target: {fileID: 436022, guid: 9a4dcf0d36e2c40188dbb2e26e6bebb4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 140
@@ -455,6 +475,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436022, guid: 9a4dcf0d36e2c40188dbb2e26e6bebb4, type: 3}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 436022, guid: 9a4dcf0d36e2c40188dbb2e26e6bebb4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 436022, guid: 9a4dcf0d36e2c40188dbb2e26e6bebb4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 436022, guid: 9a4dcf0d36e2c40188dbb2e26e6bebb4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

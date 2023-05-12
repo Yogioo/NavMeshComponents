@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(NavMeshPrefabInstance))]
@@ -38,19 +39,19 @@ class NavMeshPrefabInstanceEditor : Editor
     void OnInspectorGUIPrefab(GameObject go)
     {
         var prefab = PrefabUtility.GetPrefabInstanceHandle(go);
-        var path = AssetDatabase.GetAssetPath(prefab);
+        var path = AssetDatabase.GetAssetPath(go);
 
-        if (prefab && string.IsNullOrEmpty(path))
+        if (string.IsNullOrEmpty(path))
         {
             if (GUILayout.Button("Select the Prefab asset to bake or clear the navmesh", EditorStyles.helpBox))
             {
                 Selection.activeObject = PrefabUtility.GetCorrespondingObjectFromSource(go);
                 EditorGUIUtility.PingObject(Selection.activeObject);
             }
+
+            return;
         }
 
-        if (string.IsNullOrEmpty(path))
-            return;
 
         GUILayout.BeginHorizontal();
         GUILayout.Space(EditorGUIUtility.labelWidth);
@@ -70,9 +71,12 @@ class NavMeshPrefabInstanceEditor : Editor
         var sources = new List<NavMeshBuildSource>();
         var markups = new List<NavMeshBuildMarkup>();
 
+        var activeScene =
+            //instance.gameObject.scene;
+        SceneManager.GetActiveScene();
         UnityEditor.AI.NavMeshBuilder.CollectSourcesInStage(
-            root, ~0, NavMeshCollectGeometry.RenderMeshes, 0, markups, instance.gameObject.scene, sources);
-        var settings = NavMesh.GetSettingsByID(0);
+            root, ~0, NavMeshCollectGeometry.RenderMeshes, 0, markups, activeScene, sources);
+        NavMeshBuildSettings settings = NavMesh.GetSettingsByID(0);
         var bounds = new Bounds(Vector3.zero, 1000.0f * Vector3.one);
         var navmesh = NavMeshBuilder.BuildNavMeshData(settings, sources, bounds, root.position, root.rotation);
         navmesh.name = "Navmesh";
@@ -85,8 +89,7 @@ class NavMeshPrefabInstanceEditor : Editor
         {
             var instance = (NavMeshPrefabInstance)tgt;
             var go = instance.gameObject;
-            var prefab = PrefabUtility.GetPrefabInstanceHandle(go);
-            var path = AssetDatabase.GetAssetPath(prefab);
+            var path = AssetDatabase.GetAssetPath(tgt);
 
             if (string.IsNullOrEmpty(path))
             {
@@ -98,7 +101,6 @@ class NavMeshPrefabInstanceEditor : Editor
             AssetDatabase.SaveAssets();
         }
     }
-
     void OnBake()
     {
         foreach (var tgt in targets)
@@ -106,7 +108,7 @@ class NavMeshPrefabInstanceEditor : Editor
             var instance = (NavMeshPrefabInstance)tgt;
             var go = instance.gameObject;
             var prefab = PrefabUtility.GetPrefabInstanceHandle(go);
-            var path = AssetDatabase.GetAssetPath(prefab);
+            var path = AssetDatabase.GetAssetPath(go);
 
             if (string.IsNullOrEmpty(path))
             {
@@ -118,7 +120,7 @@ class NavMeshPrefabInstanceEditor : Editor
 
             // Store navmesh as a sub-asset of the prefab
             var navmesh = Build(instance);
-            AssetDatabase.AddObjectToAsset(navmesh, prefab);
+            AssetDatabase.AddObjectToAsset(navmesh, go);
 
             instance.navMeshData = navmesh;
             AssetDatabase.SaveAssets();
